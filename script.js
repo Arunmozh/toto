@@ -24,6 +24,9 @@ function Pick(){
     index++;
     if(index>5){index=0}
     n.splice(i,1);
+    if(document.getElementById('n5').innerText!=""&&index==0){
+        copy();
+    }
     document.getElementsByTagName("button")[0].setAttribute("onclick","Roll()")
     document.getElementsByTagName("button")[0].innerText="Roll";
 }
