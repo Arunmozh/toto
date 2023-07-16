@@ -10,10 +10,12 @@ function Roll(params) {
         document.getElementsByTagName("button")[0].innerText="Pick";
     })
 }
-let index=0,numbers,output;
+let index=0,output;
+let numbers=[]
 function Pick(){
     clearInterval(interval);
     if(document.getElementById('n5').innerText!=""&&index==0){
+        copy();
         for(let i=0;i<=5;i++){
             document.getElementById("n"+i).innerText="";
         }
@@ -22,28 +24,19 @@ function Pick(){
     index++;
     if(index>5){index=0}
     n.splice(i,1);
-    for(let i=0;i<=5;i++){
-        numbers[i]=document.getElementsByTagName("span")[i].innerText
-    }
-numbers.sort(function(a, b) {
-  return a - b;
-});
-output=numbers.join(", ");
-
-    document.getElementsByTagName("button")[0].setAttribute("onclick","copy()")
-    document.getElementsByTagName("button")[0].innerText="copy";
+    document.getElementsByTagName("button")[0].setAttribute("onclick","Roll()")
+    document.getElementsByTagName("button")[0].innerText="Roll";
 }
 
 function copy(params) {
+    for(let i=0;i<=5;i++){
+        numbers[i]=document.getElementById("n"+i).innerText
+    }
+    numbers.sort(function(a, b) {
+    return a - b;
+    });
+    output=numbers.join(", ");
 
 navigator.clipboard.writeText(output)
-  .then(() => {
-    console.log("Text copied to clipboard");
-  })
-  .catch((error) => {
-    console.error("Failed to copy text: ", error);
-  });
-
-    document.getElementsByTagName("button")[0].setAttribute("onclick","Roll()")
-    document.getElementsByTagName("button")[0].innerText="Roll";
+  
 }
