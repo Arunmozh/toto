@@ -10,7 +10,7 @@ function Roll(params) {
         document.getElementsByTagName("button")[0].innerText="Pick";
     })
 }
-let index=0;
+let index=0,numbers,output;
 function Pick(){
     clearInterval(interval);
     if(document.getElementById('n5').innerText!=""&&index==0){
@@ -22,6 +22,28 @@ function Pick(){
     index++;
     if(index>5){index=0}
     n.splice(i,1);
+    for(let i=0;i<=5;i++){
+        numbers[i]=document.getElementsByTagName("span")[i].innerText
+    }
+numbers.sort(function(a, b) {
+  return a - b;
+});
+output=numbers.join(", ");
+
+    document.getElementsByTagName("button")[0].setAttribute("onclick","copy()")
+    document.getElementsByTagName("button")[0].innerText="copy";
+}
+
+function copy(params) {
+
+navigator.clipboard.writeText(output)
+  .then(() => {
+    console.log("Text copied to clipboard");
+  })
+  .catch((error) => {
+    console.error("Failed to copy text: ", error);
+  });
+
     document.getElementsByTagName("button")[0].setAttribute("onclick","Roll()")
     document.getElementsByTagName("button")[0].innerText="Roll";
 }
