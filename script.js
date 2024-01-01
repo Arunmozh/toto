@@ -8,7 +8,7 @@ function Roll(params) {
         i++
         document.getElementsByTagName("button")[0].setAttribute("onclick","Pick()")
         document.getElementsByTagName("button")[0].innerText="Pick";
-    },15)
+    },10)
 }
 let index=0,output;
 let numbers=[]
